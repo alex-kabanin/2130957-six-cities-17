@@ -30,4 +30,4 @@ export const { setLoading, setError } = loadingSlice.actions;
 export const selectLoading = (state: RootState): boolean => state.loading.loading;
 export const selectError = (state: RootState): boolean => state.loading.error;
 
-export default loadingSlice.reducer;
+export default loadingSlice;

@@ -37,4 +37,4 @@ export const { changeCity } = citySlice.actions;
 
 export const selectActiveCity = (state: RootState): CityName => state.city.city;
 
-export default citySlice.reducer;
+export default citySlice;

@@ -1,10 +1,10 @@
 import { ReviewFormType, CityName, LocationType, sortOptionNamesType } from './types';
 
-export const AuthStatus = {
-  Auth : 'AUTH',
-  NoAuth : 'NO_AUTH',
-  Unknown  : 'UNKNOWN',
-} as const;
+export enum AuthStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
 
 export const AppRoutes = {
   Main: '/',
@@ -117,6 +117,8 @@ export enum Slices {
   Offers = 'offers',
   Sort = 'sort',
   City = 'city',
+  Authorization = 'authorization',
+  User = 'user',
 }
 
 export enum URLParams {
@@ -125,6 +127,8 @@ export enum URLParams {
 
 export const ApiRoutes = {
   Offers: '/offers',
+  Authorisation: '/login',
+  Logout: '/logout',
 };
 
 export const API_TIMEOUT = 5000;

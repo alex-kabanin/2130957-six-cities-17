@@ -1,4 +1,4 @@
-import { AppRoutes, AuthStatus } from '../../const.ts';
+import { AppRoutes } from '../../const.ts';
 import MainPage from '../../pages/main/main.tsx';
 import Error from '../../pages/error/error.tsx';
 import Favorites from '../../pages/favorites/favorites.tsx';
@@ -15,6 +15,8 @@ import { useEffect } from 'react';
 import { fetchOffersAction } from '../../api/actions.ts';
 import { selectLoading, selectError } from '../../store/slices/loading.ts';
 import ServerError from '../../pages/error/server-error.tsx';
+import { checkAuthorisation } from '../../api/auth.ts';
+import { selectAuthorisationStatus } from '../../store/slices/auth.ts';
 
 type AppProps = {
   places: Place[];
@@ -24,10 +26,12 @@ type AppProps = {
 export default function App({ places, reviews }: AppProps): JSX.Element {
   const loading = useAppSelector(selectLoading);
   const error = useAppSelector(selectError);
+  const authStatus = useAppSelector(selectAuthorisationStatus);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchOffersAction());
+    dispatch(checkAuthorisation());
   }, [dispatch]);
 
   if (loading) {
@@ -47,7 +51,7 @@ export default function App({ places, reviews }: AppProps): JSX.Element {
           <Route
             path={AppRoutes.Favourites}
             element={
-              <PrivateRoute authStatus={AuthStatus.NoAuth}>
+              <PrivateRoute authStatus={authStatus}>
                 <Favorites places={places} />
               </PrivateRoute>
             }

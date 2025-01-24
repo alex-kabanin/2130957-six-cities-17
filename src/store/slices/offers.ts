@@ -32,4 +32,4 @@ export const { setOffers, changeSortOption } = offersSlice.actions;
 export const selectOffers = (state: RootState): Place[] => state.offers.offers;
 export const selectSortOption = (state: RootState): string => state.offers.sortOption;
 
-export default offersSlice.reducer;
+export default offersSlice;
